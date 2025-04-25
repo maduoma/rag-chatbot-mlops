@@ -30,14 +30,10 @@
 
     {% include 'partials/sidebar.html' %}
     <main class="chat-main">
-      {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-          {% for category, msg in messages %}
-            <div class="flash {{ category }}">{{ msg }}</div>
-          {% endfor %}
-        {% endif %}
-      {% endwith %}
-      {% block content %}{% endblock %}
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, msg in messages %}
+      <div class="flash {{ category }}">{{ msg }}</div>
+      {% endfor %} {% endif %} {% endwith %} {% block content %}{% endblock %}
     </main>
 
     <!-- Load scripts at the bottom of the page -->
