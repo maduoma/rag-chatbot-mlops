@@ -1,15 +1,14 @@
 # tests/test_api.py
 
-from fastapi.testclient import TestClient
-from app.api.main import app
+from app.ui.flask_app import create_app
 
-client = TestClient(app)
+app = create_app()
+client = app.test_client()
 
 def test_root_route():
     response = client.get("/")
     assert response.status_code == 200
 
-def test_chat_endpoint():
-    response = client.post("/chat", json={"query": "Define AI"})
+def test_upload_route():
+    response = client.get("/upload")
     assert response.status_code == 200
-    assert "answer" in response.json()

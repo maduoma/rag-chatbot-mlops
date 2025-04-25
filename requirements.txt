@@ -27,8 +27,8 @@ coverage
 Jinja2
 
 # === Optional (safe build tools for native packages) ===
-setuptools
-wheel
+# setuptools
+# wheel
 
 
 # # === Core Framework ===
