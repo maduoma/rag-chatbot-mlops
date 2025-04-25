@@ -11,22 +11,36 @@
 <div class="gpt-chat-header">
   <h2 class="gpt-title">RAG Chatbot</h2>
   <nav class="gpt-nav">
-    <a href="{{ url_for('ui.index') }}" class="gpt-nav-link">Chat</a>
-    <a href="{{ url_for('ui.upload') }}" class="gpt-nav-link">Upload</a>
+    <!--<a href="{{ url_for('ui.index') }}" class="gpt-nav-link">Chat</a> -->
+    <a href="{{ url_for('ui.upload') }}" class="gpt-nav-link"
+      >Upload Your Document(s)</a
+    >
   </nav>
 </div>
 <div class="chat-container gpt-chat-container">
   <div class="gpt-chat-messages">
     <div id="live-response" class="message bot" style="display: none"></div>
     {% for m in messages %} {% if m.sender == "user" %}
-    <div class="message user gpt-user">
-      <div class="gpt-avatar user-avatar">🧑</div>
-      <div class="gpt-bubble">{{ m.content }}</div>
+    <div
+      class="message user gpt-user"
+      data-message-id="{{ m.id }}"
+      data-original="{{ m.content }}"
+    >
+      <div class="gpt-bubble gpt-bubble-user">
+        <span class="gpt-user-text">{{ m.content }}</span>
+        <span class="gpt-avatar user-avatar gpt-avatar-middle">🧑</span>
+        <button class="edit-btn" title="Edit">✎</button>
+        <div class="edit-area" style="display: none">
+          <textarea class="edit-textarea">{{ m.content }}</textarea>
+          <button class="resend-btn" title="Resend">Resend</button>
+          <button class="cancel-btn" title="Cancel">Cancel</button>
+        </div>
+      </div>
     </div>
     {% else %}
     <div class="message bot gpt-bot">
-      <div class="gpt-avatar bot-avatar">🤖</div>
-      <div class="gpt-bubble">
+      <div class="gpt-bubble gpt-bubble-bot">
+        <span class="gpt-avatar bot-avatar gpt-avatar-middle">🤖</span>
         {{ m.content }}<span class="copy-icon" title="Copy">📋</span>
       </div>
     </div>
