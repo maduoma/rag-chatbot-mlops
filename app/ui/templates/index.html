@@ -1,0 +1,34 @@
+<!-- app/ui/templates/index.html -->
+
+{% extends "layout.html" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
+{{ super() }}  <!-- This keeps any styles from the parent template -->
+{% endblock %}
+
+{% block content %}
+<div class="chat-container gpt-chat-container">
+  <div id="live-response" class="message bot" style="display: none;"></div>
+  {% for m in messages %}
+    {% if m.sender == "user" %}
+      <div class="message user gpt-user">
+        <div class="gpt-avatar user-avatar">🧑</div>
+        <div class="gpt-bubble">{{ m.content }}</div>
+      </div>
+    {% else %}
+      <div class="message bot gpt-bot">
+        <div class="gpt-avatar bot-avatar">🤖</div>
+        <div class="gpt-bubble">{{ m.content }}<span class="copy-icon" title="Copy">📋</span></div>
+      </div>
+    {% endif %}
+  {% endfor %}
+
+  <form id="gpt-chat-form" method="POST" action="/chat" autocomplete="off">
+    <div class="gpt-input-row">
+      <textarea id="gpt-input" name="query" rows="1" required placeholder="Message RAG Chatbot..." autofocus></textarea>
+      <div class="gpt-input-hint">Press <kbd>Enter</kbd> to send</div>
+    </div>
+  </form>
+</div>
+{% endblock %}

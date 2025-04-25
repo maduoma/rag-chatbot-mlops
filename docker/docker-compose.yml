@@ -1,0 +1,19 @@
+# docker/docker-compose.yml
+
+version: '3.8'
+
+services:
+  rag_chatbot:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ../data:/app/data
+    environment:
+      - FLASK_APP=app/ui/flask_app.py
+    command: python -u app/ui/flask_app.py
+      #   env_file:
+      # - ../docker/.env
+

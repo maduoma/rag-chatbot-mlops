@@ -1,0 +1,22 @@
+<!-- app/ui/templates/partials/sidebar.html -->
+<div id="sidebar" class="sidebar">
+    <button id="toggleSidebar" class="toggle-btn">☰</button>
+    <div class="new-chat-container">
+      <a href="{{ url_for('ui.new_chat') }}" class="new-chat-button">+ New Chat</a>
+    </div>
+    <ul class="session-list">
+      {% for s in sessions %}
+        <li class="session-item">
+          <a href="{{ url_for('ui.view_session', session_id=s.id) }}">{{ s.title }}</a>
+          <div class="kebab-menu">
+            <button class="kebab-btn">⋮</button>
+            <div class="kebab-dropdown">
+              <form action="{{ url_for('ui.delete_session', session_id=s.id) }}" method="post" onsubmit="return confirmDelete();">
+                <button type="submit" class="delete-btn">Delete</button>
+              </form>
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>

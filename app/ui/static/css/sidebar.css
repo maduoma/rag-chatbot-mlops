@@ -1,0 +1,165 @@
+/* app/ui/static/css/sidebar.css */
+
+.sidebar {
+    width: 250px;
+    background: #f2f2f2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
+    padding: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .sidebar.collapsed {
+    transform: translateX(-100%);
+  }
+  
+  .toggle-btn {
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  
+  .session-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 6px 0;
+    width: 100%;
+  }
+  
+  .session-item a {
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 8px;
+  }
+  
+  .kebab-menu {
+    flex-shrink: 0;
+    position: relative;
+  }
+  
+  .kebab-btn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .kebab-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 20px;
+    background: white;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    z-index: 10;
+  }
+  
+  .kebab-menu:hover .kebab-dropdown {
+    display: block;
+  }
+  
+
+  .kebab-menu {
+    position: relative;
+  }
+  
+  .kebab-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    margin-left: 6px;
+  }
+  
+  .kebab-dropdown {
+    display: none;
+    position: absolute;
+    top: 20px;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 100;
+  }
+  
+  .kebab-dropdown button {
+    background: none;
+    border: none;
+    padding: 8px 16px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    color: red;
+  }
+  
+  .kebab-dropdown button:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .kebab-menu {
+    position: relative;
+  }
+  
+  .kebab-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    margin-left: 6px;
+  }
+  
+  .kebab-dropdown {
+    display: none;
+    position: absolute;
+    top: 20px;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 100;
+  }
+  
+  .kebab-dropdown button {
+    background: none;
+    border: none;
+    padding: 8px 16px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    color: red;
+  }
+  
+  .kebab-dropdown button:hover {
+    background-color: #f5f5f5;
+  }
+  
+  /* Add these styles to your existing sidebar.css file */
+
+.new-chat-container {
+    margin: 15px 0;
+    text-align: center;
+  }
+  
+  .new-chat-button {
+    display: block;
+    background-color: var(--color-primary, #0b5394);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.2s;
+  }
+  
+  .new-chat-button:hover {
+    background-color: #0a4580;
+  }
