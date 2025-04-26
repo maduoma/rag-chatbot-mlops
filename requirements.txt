@@ -1,6 +1,7 @@
 # === Core Framework ===
 Flask
 
+fastapi
 # === Vector Store & Embeddings ===
 faiss-cpu
 sentence-transformers
