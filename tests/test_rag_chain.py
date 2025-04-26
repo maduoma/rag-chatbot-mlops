@@ -1,19 +1,30 @@
 # tests/test_rag_chain.py
-import pytest
-from unittest.mock import patch
+"""
+Unit-test the RAG pipeline without hitting Anthropic or OpenAI.
 
+We patch app.llm.generator._call_claude to return a deterministic
+string.  That covers whichever LLM path the generator chooses.
+"""
+
+from unittest.mock import patch
 from app.llm.rag_chain import RAGPipeline
 
+
+@patch("app.llm.generator._call_claude", return_value="Mocked answer")
 @patch("app.llm.generator.openai.ChatCompletion.create")
-def test_rag_pipeline(mock_create):
-    mock_create.return_value = {"choices": [{"message": {"content": "Mocked answer"}}]}
+def test_rag_pipeline(mock_openai_create, mock_claude_call):
+    # OpenAI stub (kept for completeness; not exercised when Claude branch chosen)
+    mock_openai_create.return_value = type(
+        "Resp",
+        (),
+        {
+            "choices": [
+                type("Choice", (), {"message": {"content": "Mocked answer"}})()
+            ]
+        },
+    )()
+
     rag = RAGPipeline()
     result = rag.run("What is AI?")
-    assert "Mocked answer" in result
-# from app.llm.rag_chain import RAGPipeline
 
-# def test_rag_pipeline():
-#     rag = RAGPipeline()
-#     result = rag.run("What is AI?")
-#     assert isinstance(result, str)
-#     assert "AI" in result or "context" in result
+    assert result == "Mocked answer"

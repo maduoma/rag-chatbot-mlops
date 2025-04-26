@@ -3,9 +3,9 @@ name: RAG Chatbot - CI Tests
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [main]
   push:
-    branches: [ main, dev ]
+    branches: [main, dev]
 
 jobs:
   test:
@@ -41,7 +41,7 @@ jobs:
 
       # -- Upload artifacts (NOTE v4!) ----------------------------------------------
       - name: Upload test results
-        if: always()              # Upload even when pytest fails
+        if: always() # Upload even when pytest fails
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.TEST_RESULTS }}
