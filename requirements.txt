@@ -22,7 +22,8 @@ python-dotenv
 
 # === Dev & Testing ===
 pytest
-coverage
+pytest-cov
+
 
 # === Frontend Utilities ===
 Jinja2
