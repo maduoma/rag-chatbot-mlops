@@ -37,20 +37,3 @@ def test_rag_pipeline(mock_create):
 
     # ----- Assert ------------------------------------------------------------
     assert result == "Mocked answer"
-
-
-
-# # tests/test_rag_chain.py
-# import pytest
-# from unittest.mock import patch
-
-# from app.llm.rag_chain import RAGPipeline
-
-# @patch("app.llm.generator.openai.ChatCompletion.create")
-# def test_rag_pipeline(mock_create):
-#     mock_create.return_value = {"choices": [{"message": {"content": "Mocked answer"}}]}
-#     rag = RAGPipeline()
-#     result = rag.run("What is AI?")
-#     assert "Mocked answer" in result
-# # from app.llm.rag_chain import RAGPipeline
-
