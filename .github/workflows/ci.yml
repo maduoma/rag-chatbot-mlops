@@ -9,7 +9,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
 
     # ↓ Give each artifact a predictable ID to avoid clashes across jobs
     env:
