@@ -11,40 +11,37 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    # ↓ Give each artifact a predictable ID to avoid clashes across jobs
     env:
       TEST_RESULTS: pytest-report
 
     steps:
-      # -- Checkout ------------------------------------------------------------------
       - name: Check out code
         uses: actions/checkout@v4
 
-      # -- Set up Python -------------------------------------------------------------
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      # -- Install deps --------------------------------------------------------------
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          
 
-      # -- Run tests -----------------------------------------------------------------
-      - name: Run unit + integration tests
+      - name: Run unit + integration tests and generate reports
         run: |
-          python -m pytest tests
+          mkdir -p reports
+          python -m pytest tests \
+            --junitxml=reports/junit.xml \
+            --cov=app \
+            --cov-report=xml:reports/coverage.xml
 
-      # -- Upload artifacts (NOTE v4!) ----------------------------------------------
       - name: Upload test results
-        if: always()              # Upload even when pytest fails
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.TEST_RESULTS }}
           path: |
             reports/junit.xml
-            coverage.xml
+            reports/coverage.xml
           retention-days: 14
