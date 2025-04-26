@@ -21,8 +21,6 @@ requests==2.31.0
 python-dotenv
 
 # === Dev & Testing ===
-# pytest
-# coverage
 pytest
 pytest-cov
 
