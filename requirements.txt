@@ -21,8 +21,11 @@ requests==2.31.0
 python-dotenv
 
 # === Dev & Testing ===
+# pytest
+# coverage
 pytest
-coverage
+pytest-cov
+
 
 # === Frontend Utilities ===
 Jinja2
