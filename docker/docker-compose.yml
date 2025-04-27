@@ -1,19 +1,67 @@
 # docker/docker-compose.yml
 
-version: '3.8'
+# version: "3.8" Deleted the version line to avoid compatibility issues with Docker Compose v2
+# version: '3.8' # Uncomment this line if you want to specify a version for Docker Compose v2
 
 services:
-  rag_chatbot:
+  # ── API (FastAPI or Flask) ──────────────────────────────
+  api:
     build:
       context: ..
-      dockerfile: docker/Dockerfile
+      dockerfile: docker/Dockerfile.rag
+    container_name: rag-chat-api
     ports:
-      - "5000:5000"
-    volumes:
-      - ../data:/app/data
+      - "8000:8000"
+    env_file:
+      - ../docker/.env
     environment:
-      - FLASK_APP=app/ui/flask_app.py
-    command: python -u app/ui/flask_app.py
-      #   env_file:
-      # - ../docker/.env
+      PROMETHEUS_MULTIPROC_DIR: /tmp
+    volumes:
+      - ..:/app
+    command: uvicorn src.api.main:app --host 0.0.0.0 --port 8000
+
+  # ── Prometheus ───────────────────────────────────────────
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: rag-chat-prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "9090:9090"
+    depends_on:
+      - api
+
+  # ── Grafana ──────────────────────────────────────────────
+  grafana:
+    image: grafana/grafana:9.5.0
+    container_name: rag-chat-grafana
+    user: "472"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: secret
+      GF_USERS_ALLOW_SIGN_UP: "false"
+    volumes:
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+
+# version: '3.8'
+
+# services:
+#   rag_chatbot:
+#     build:
+#       context: ..
+#       dockerfile: docker/Dockerfile
+#     ports:
+#       - "5000:5000"
+#     volumes:
+#       - ../data:/app/data
+#     environment:
+#       - FLASK_APP=app/ui/flask_app.py
+#     command: python -u app/ui/flask_app.py
+#       #   env_file:
+#       # - ../docker/.env
 

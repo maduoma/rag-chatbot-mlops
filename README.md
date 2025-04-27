@@ -1,3 +1,16 @@
+# RAG Chatbot MLOps 🚀
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://github.com/maduoma/rag_chatbot_mlops/actions/workflows/ci.yml/badge.svg)](https://github.com/maduoma/rag_chatbot_mlops/actions)
+![Made with Python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)
+[![Issues](https://img.shields.io/github/issues/maduoma/rag_chatbot_mlops.svg)](https://github.com/maduoma/rag_chatbot_mlops/issues)
+[![GitHub stars](https://img.shields.io/github/stars/maduoma/rag_chatbot_mlops.svg)](https://github.com/maduoma/rag_chatbot_mlops/stargazers)
+
+---
+
+A production-grade Retrieval-Augmented Generation (RAG) Chatbot with a full MLOps pipeline using FastAPI, FAISS, OpenAI, Docker, and Terraform!
+
+
 # rag-chatbot-mlops
 
 # 🧠 RAG Chatbot (Retrieval-Augmented Generation)

@@ -1,6 +1,5 @@
 # app/db/session_store.py
 
-import os
 import sqlite3
 from datetime import datetime
 from typing import List, Dict
