@@ -8,11 +8,10 @@
 
 ---
 
-A production-grade Retrieval-Augmented Generation (RAG) Chatbot with a full MLOps pipeline using FastAPI, FAISS, OpenAI, Docker, and Terraform deployed to GCP (Cloud Run & Vertex AI), Azure (Azure ML), and AWS (SageMaker).
+A production-grade Retrieval-Augmented Generation (RAG) Chatbot with a full MLOps pipeline using FastAPI, FAISS, OpenAI, Docker, and Terraform deployed to GCP (Cloud Run & Vertex AI), Azure (Azure ML), and AWS (SageMaker)!
 
 ---
 
-!
 
 
 # rag-chatbot-mlops
