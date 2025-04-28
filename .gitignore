@@ -13,3 +13,7 @@ data/processed/
 data/raw/
 .DS_Store
 .docker/
+.idea/
+__pycache__/
+*.py[cod]
+*.pyo
