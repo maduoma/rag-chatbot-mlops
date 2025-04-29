@@ -8,9 +8,9 @@ venv/
 build/
 dist/
 *.egg-info/
-data/faiss_index/
-data/processed/
-data/raw/
+# data/faiss_index/
+# data/processed/
+# data/raw/
 .DS_Store
 .docker/
-data/chat_sessions.db
+# data/chat_sessions.db
