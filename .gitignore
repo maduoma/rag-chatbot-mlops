@@ -13,3 +13,4 @@ data/processed/
 data/raw/
 .DS_Store
 .docker/
+data/chat_sessions.db

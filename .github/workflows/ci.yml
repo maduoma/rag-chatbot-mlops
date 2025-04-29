@@ -3,15 +3,17 @@ name: RAG Chatbot - CI Tests
 
 on:
   pull_request:
-    branches: [main]
+    branches: [ main ]
   push:
     branches: [ main, dev, feature/* ]
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
     env:
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      TEST_RESULTS: pytest-report
+
     steps:
       - name: Check out code
         uses: actions/checkout@v4
